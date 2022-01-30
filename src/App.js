@@ -1,6 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
 import styles from "./App.module.css";
 
+import fnGetCssFromInput from "./fnGetCssFromInput";
+
 function App() {
 
     const [stateInput, setStateInput] = useState("");
@@ -8,12 +10,14 @@ function App() {
 
     const InputRef = useRef(null);
 
+    // to bring focus to input field on every page reload
     useEffect(() => {
         InputRef.current.focus();
     }, []);
 
     const clickConvert = () => {
-        alert("ACTION DEFINED");
+        const convertedCss = fnGetCssFromInput(stateInput);
+        setStateOutput(convertedCss);
     }
 
     return (
