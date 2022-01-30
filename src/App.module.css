@@ -35,6 +35,10 @@
     padding: 10px;
 }
 
+.textAreaWrapper::placeholder {
+    color: rgb(6, 80, 6);
+}
+
 .inputWrapper {
     composes: textAreaWrapper;
     background-color: cadetblue;
@@ -43,21 +47,4 @@
 .outputWrapper {
     composes: textAreaWrapper;
     background-color: rgb(75, 124, 156);
-}
-
-.buttonWrapper {
-    display: flex;
-    justify-content: center;
-}
-
-.buttonConvert {
-    padding: 20px;
-    margin-top: 25px;
-    background-color: tomato;
-    font-size: 1.2em;
-    cursor: pointer;
-    color: black;
-    border-radius: 10px;
-    font-weight: 600;
-    border: 3px solid rgb(241, 55, 22);
 }

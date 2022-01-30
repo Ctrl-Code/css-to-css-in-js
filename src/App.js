@@ -1,7 +1,14 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./App.module.css";
 
 import fnGetCssFromInput from "./fnGetCssFromInput";
+
+const Placeholder = {
+    input: `Please type or paste the CSS...
+The Conversion is dynamic...`,
+
+    output: `Converted "CSS-in-JS" appears here...`,
+}
 
 function App() {
 
@@ -15,10 +22,19 @@ function App() {
         InputRef.current.focus();
     }, []);
 
-    const clickConvert = () => {
-        const convertedCss = fnGetCssFromInput(stateInput);
-        setStateOutput(convertedCss);
-    }
+    // dynamic css conversion
+    useEffect(() => {
+
+        if (stateInput.length > 0) {
+
+            const convertedCss = fnGetCssFromInput(stateInput);
+            setStateOutput(convertedCss);
+        }
+
+        else
+            setStateOutput("");
+
+    }, [stateInput]);
 
     return (
         <div className={styles.page}>
@@ -39,22 +55,16 @@ function App() {
                     onChange={event => {
                         setStateInput(event.target.value);
                     }}
+                    placeholder={Placeholder.input}
                 />
 
                 {/* Output Field */}
                 <textarea className={styles.outputWrapper}
                     readOnly={true}
+                    placeholder={Placeholder.output}
                     value={stateOutput}
                 />
 
-            </div>
-
-            {/* Convert Button */}
-            <div className={styles.buttonWrapper}>
-                <div className={styles.buttonConvert}
-                    onClick={clickConvert}>
-                    CONVERT
-                </div>
             </div>
 
         </div>
