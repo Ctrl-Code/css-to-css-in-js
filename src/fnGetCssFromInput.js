@@ -40,25 +40,48 @@ function getEndCharRemovedString(char, string) {
 
 function fnGetCssFromInput(textAreaInput) {
 
-    // remove last semicolon if present
-    const semiColonRemovedInput = getEndCharRemovedString(';', textAreaInput);
+    try {
 
-    // segregate properties based on semi-colon
-    const CssArray = semiColonRemovedInput.split(";");
+        // remove last semicolon if present
+        const semiColonRemovedInput = getEndCharRemovedString(';', textAreaInput);
 
-    // loop over properties
-    CssArray.forEach((css, index, self) => {
+        // segregate properties based on semi-colon
+        const CssArray = semiColonRemovedInput.split(";");
 
-        let [property, value] = css.split(":");
+        // loop over properties
+        CssArray.forEach((css, index, self) => {
 
-        let newProperty = getCamelCasedProperty(property);
-        let newValue = getStringValue(value);
+            let [property, value] = css.split(":");
 
-        self[index] = `${newProperty}: ${newValue}`;
-    });
+            let newProperty = getCamelCasedProperty(property);
+            let newValue = getStringValue(value);
 
-    // append comma (,) at the end
-    return CssArray.join(',\n') + ',';
+            self[index] = `${newProperty}: ${newValue}`;
+        });
+
+        // append comma (,) at the end
+        return CssArray.join(',\n') + ',';
+
+    }
+
+    catch (error) {
+
+        if (error instanceof TypeError)
+            return "Please put in proper css.";
+
+        else {
+
+            const { name, message } = error;
+
+            // displaying on screen
+            console.log('ERROR OCCURED', name, message);
+
+            // and also 
+            return `ERROR OCCURED\n-------------\nNAME: ${name}\nMESSAGE: ${message}`;
+        }
+
+    }
+
 
 }
 
