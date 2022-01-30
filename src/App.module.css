@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.headingWrapper {
+    padding: 30px 0;
+}
+
+.heading {
+    font-size: 2em;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: underline;
+    color: rgba(46, 16, 2, 0.918);
+}
+
+.page {
+    background-color: chocolate;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+.textAreaEncloser {
+    display: flex;
+    height: 250px;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.textAreaWrapper {
+    flex-basis: 45%;
+    min-height: 100%;
+    resize: none;
+    padding: 10px;
+}
+
+.inputWrapper {
+    composes: textAreaWrapper;
+    background-color: cadetblue;
+}
+
+.outputWrapper {
+    composes: textAreaWrapper;
+    background-color: rgb(75, 124, 156);
+}
+
+.buttonWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.buttonConvert {
+    padding: 20px;
+    margin-top: 25px;
+    background-color: tomato;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: black;
+    border-radius: 10px;
+    font-weight: 600;
+    border: 3px solid rgb(241, 55, 22);
+}
