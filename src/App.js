@@ -3,12 +3,35 @@ import styles from "./App.module.css";
 
 import fnGetCssFromInput from "./fnGetCssFromInput";
 
-const Placeholder = {
-    input: `Please type or paste the CSS...
-The Conversion is dynamic...`,
+const Consts = {
+    placeholder: {
+        input: `Please type or paste the CSS...
+        The Conversion is dynamic...`,
 
-    output: `Converted "CSS-in-JS" appears here...`,
-}
+        output: `Converted "CSS-in-JS" appears here...`,
+    }
+};
+
+const Comps = {
+    heading: () => <div className={styles.headingWrapper}>
+        <div className={styles.heading}>
+            CSS to CSS-IN-JS
+        </div>
+    </div>,
+
+    input: ({ value = "", reff= null, onChange = val => { } }) => <textarea className={styles.inputWrapper}
+        ref={reff}
+        value={value}
+        onChange={event => onChange(event.target.value)}
+        placeholder={Consts.placeholder.input}
+    />,
+
+    output: ({ value = "" }) => <textarea className={styles.outputWrapper}
+        readOnly={true}
+        value={value}
+        placeholder={Consts.placeholder.output}
+    />
+};
 
 function App() {
 
@@ -39,29 +62,17 @@ function App() {
     return (
         <div className={styles.page}>
 
-            {/* Heading */}
-            <div className={styles.headingWrapper}>
-                <div className={styles.heading}>
-                    CSS to CSS-IN-JS
-                </div>
-            </div>
+            <Comps.heading />
 
             <div className={styles.textAreaEncloser}>
 
-                {/* Input Field */}
-                <textarea className={styles.inputWrapper}
-                    ref={InputRef}
+                <Comps.input
+                    reff={InputRef}
                     value={stateInput}
-                    onChange={event => {
-                        setStateInput(event.target.value);
-                    }}
-                    placeholder={Placeholder.input}
+                    onChange={value => setStateInput(value)}
                 />
 
-                {/* Output Field */}
-                <textarea className={styles.outputWrapper}
-                    readOnly={true}
-                    placeholder={Placeholder.output}
+                <Comps.output
                     value={stateOutput}
                 />
 
