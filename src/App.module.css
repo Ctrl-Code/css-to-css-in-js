@@ -36,7 +36,8 @@
 }
 
 .textAreaWrapper::placeholder {
-    color: rgb(6, 80, 6);
+    color: rgb(0, 39, 0);
+    font-size: 1.3em;
 }
 
 .inputWrapper {
@@ -46,5 +47,5 @@
 
 .outputWrapper {
     composes: textAreaWrapper;
-    background-color: rgb(75, 124, 156);
+    background-color: #6d9fc0;
 }
